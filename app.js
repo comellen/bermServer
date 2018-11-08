@@ -20,4 +20,4 @@ app.use('/bikes', bike);
 app.use('/rides', ride);
 app.use('/trails', trail);
 
-app.listen(process.env.PORT, () => console.log(`!@#$%^&**&^%$#@! APP IS LISTENING ON ${process.env.PORT} !@#$%^&**&^%$#@!`));
+app.listen(process.env.PORT, () => console.log(`.....!@#$%^&**&^%$#@! APP IS LISTENING ON ${process.env.PORT} !@#$%^&**&^%$#@!.....`));
