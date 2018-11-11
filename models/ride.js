@@ -3,9 +3,9 @@ module.exports = (sequelize, DataTypes) => {
         trail: DataTypes.STRING,
         location: DataTypes.STRING,
         bike: DataTypes.STRING,
-        time: DataTypes.TIME,
+        time: DataTypes.STRING,
         notes: DataTypes.TEXT,
-        date: DataTypes.DATE,
+        date: DataTypes.STRING,
         owner: DataTypes.INTEGER
     });
 };

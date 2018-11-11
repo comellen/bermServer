@@ -2,9 +2,8 @@ const router = require('express').Router();
 const Bike = require('../db').import('../models/bike');
 const validateSession = require('../middleware/validatesession');
 
-router.get('/getall', validateSession, (req, res) => {
+router.get('/getall', (req, res) => {
     let owner = req.user.id;
-    console.log(owner);
     Bike.findAll({
         where: { owner: owner }
     })
@@ -19,7 +18,6 @@ router.get('/getall', validateSession, (req, res) => {
 });
 
 router.post('/create', validateSession, (req, res) => {
-    let owner = req.user.id;
     Bike.create({
         brand: req.body.bike.brand,
         model: req.body.bike.model,
@@ -36,7 +34,7 @@ router.post('/create', validateSession, (req, res) => {
         tires: req.body.bike.tires,
         additionalComponents: req.body.bike.additionalComponents,
         plannedUpgrades: req.body.bike.plannedUpgrades,
-        owner: owner,
+        owner: req.user.id,
     })
         .then(createSuccess = (newbike) => {
             res.json({

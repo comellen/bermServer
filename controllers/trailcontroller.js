@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const Trail = require('../db').import('../models/trail');
-const validateSession = require('../middleware/validatesession');
+// const validateSession = require('../middleware/validatesession');
 
-router.get('/getall', validateSession, (req, res) => {
+router.get('/getall', (req, res) => {
     let owner = req.user.id;
     Trail.findAll({
         where: { owner: owner }
@@ -17,8 +17,7 @@ router.get('/getall', validateSession, (req, res) => {
         );
 });
 
-router.post('/create', validateSession, (req, res) => {
-    let owner = req.user.id;
+router.post('/create', (req, res) => {
     Trail.create({
         name: req.body.trail.name,
         location: req.body.trail.location,
@@ -27,20 +26,21 @@ router.post('/create', validateSession, (req, res) => {
         notes: req.body.trail.notes,
         completed: req.body.trail.completed,
         date: req.body.trail.date,
-        owner: owner
+        owner: req.user.id
     })
-        .then(createSuccess = (data) => {
+        .then((data) => {
             res.json({
                 newtrail: data
             });
         },
-            createError = (err) => {
+            (err) => {
+                console.log(err, 'line 48 trailcontroller');
                 res.send(500, err.message);
             }
         );
 });
 
-router.delete('/delete/:id', validateSession, (req, res) => {
+router.delete('/delete/:id', (req, res) => {
     let data = req.params.id;
     let owner = req.user.id;
     Trail.destroy({
@@ -56,7 +56,7 @@ router.delete('/delete/:id', validateSession, (req, res) => {
         );
 });
 
-router.put('/update/:id', validateSession, (req, res) => {
+router.put('/update/:id', (req, res) => {
     let data = req.params.id;
     let owner = req.user.id;
     Trail.update({

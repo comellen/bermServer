@@ -6,20 +6,19 @@ module.exports = (req, res, next) => {
         next();
     } else {
         const sessionToken = req.headers.authorization;
+        console.log(sessionToken, 'line 9 in validatesession');
         if (!sessionToken) return res.status(403).send({ auth: false, message: 'No token provided.' });
         else {
             jwt.verify(sessionToken, process.env.SECRET, (err, decodedToken) => {
-                if (!err && decodedToken) {
+                if (decodedToken) {
                     User.findOne({ where: { id: decodedToken.id } })
                         .then(user => {
-                            if (!user) throw 'err';
                             req.user = user;
                             return next();
-                        })
-                        .catch(err => next(err));
+                        },
+                        () => {res.status(401).send({error: 'Not authorized'})});
                 } else {
-                    req.errors = err;
-                    return next();
+                    res.status(400).send(({error: 'Not supported'}));
                 }
             });
         }

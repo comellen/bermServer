@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const express = require('express');
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(require('./middleware/headers'));
 
 app.use('/user', user);
 
+app.use(require('./middleware/validatesession'));
 app.use('/bikes', bike);
 app.use('/rides', ride);
 app.use('/trails', trail);

@@ -3,10 +3,10 @@ module.exports = (sequelize, DataTypes) => {
         name: DataTypes.STRING,
         location: DataTypes.STRING,
         length: DataTypes.DECIMAL,
-        difficulty: DataTypes.ENUM('Easy', 'Intermediate', 'Advanced', 'Most Advanced'),
+        difficulty: DataTypes.ENUM('', 'Easy', 'Intermediate', 'Advanced', 'Most Advanced'),
         notes: DataTypes.TEXT,
-        completed: DataTypes.ENUM('Yes', 'No'),
-        date: DataTypes.DATE,
+        completed: DataTypes.ENUM('', 'Yes', 'No'),
+        date: DataTypes.STRING,
         owner: DataTypes.INTEGER
     });
 };

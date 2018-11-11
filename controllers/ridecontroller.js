@@ -18,7 +18,6 @@ router.get('/getall', validateSession, (req, res) => {
 });
 
 router.post('/create', validateSession, (req, res) => {
-    let owner = req.user.id;
     Ride.create({
         trail: req.body.ride.trail,
         location: req.body.ride.location,
@@ -26,7 +25,7 @@ router.post('/create', validateSession, (req, res) => {
         time: req.body.ride.time,
         notes: req.body.ride.notes,
         date: req.body.ride.date,
-        owner: owner
+        owner: req.user.id
     })
         .then(createSuccess = (data) => {
             res.json({
