@@ -78,6 +78,7 @@ router.put('/update/:id', validateSession, (req, res) => {
             wheelSize: req.body.bike.wheelSize,
             shifters: req.body.bike.shifters,
             derailleur: req.body.bike.derailleur,
+            cassette: req.body.bike.cassette,
             brakes: req.body.bike.brakes,
             tires: req.body.bike.tires,
             additionalComponents: req.body.bike.additionalComponents,
