@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
     return sequelize.define('bike', {
         brand: DataTypes.STRING,
         model: DataTypes.STRING,
-        year: DataTypes.INTEGER,
+        year: DataTypes.STRING,
         frame: DataTypes.STRING,
         suspension: DataTypes.ENUM('', 'Full suspension', 'Hardtail', 'None'),
         fork: DataTypes.STRING,
