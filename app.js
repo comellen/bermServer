@@ -11,7 +11,7 @@ const trail = require('./controllers/trailcontroller');
 const sequelize = require('./db');
 const bodyParser = require('body-parser');
 
-sequelize.sync({force: true});
+sequelize.sync();
 app.use(bodyParser.json());
 app.use(require('./middleware/headers'));
 
